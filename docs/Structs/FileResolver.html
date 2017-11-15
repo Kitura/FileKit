@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FileResolver Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Struct/FileResolver" class="dashAnchor"></a>
+
+    <a title="FileResolver Structure Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          FileResolver Docs
+        </a>
+         (90% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/IBM-Swift/FileResolver/">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">FileResolver Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      FileResolver Structure Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/FileResolver.html">FileResolver</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>FileResolver</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">FileResolver</span></code></pre>
+
+                </div>
+              </div>
+            <p>Utility providing path resolution and execution environment information</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Environment%20Information"></a>
+                <a name="//apple_ref/swift/Section/Environment Information" class="dashAnchor"></a>
+                <a href="#/Environment%20Information">
+                  <h3 class="section-name">Environment Information</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12FileResolverAAV15isRanFromXCTestSbvZ"></a>
+                    <a name="//apple_ref/swift/Variable/isRanFromXCTest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12FileResolverAAV15isRanFromXCTestSbvZ">isRanFromXCTest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicates whether a code is executed from within XCTestCase (i.e. the executable is XCTest)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">isRanFromXCTest</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="n"><a href="../Structs/FileResolver.html#/s:12FileResolverAAV13executableURL10Foundation0D0VvZ">executableURL</a></span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="nf">hasSuffix</span><span class="p">(</span><span class="s">"/xctest"</span><span class="p">)</span> <span class="o">||</span> <span class="n"><a href="../Structs/FileResolver.html#/s:12FileResolverAAV13executableURL10Foundation0D0VvZ">executableURL</a></span><span class="o">.</span><span class="n">lastPathComponent</span> <span class="o">==</span> <span class="s">"xctest"</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12FileResolverAAV16isRanInsideXcodeSbvZ"></a>
+                    <a name="//apple_ref/swift/Variable/isRanInsideXcode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12FileResolverAAV16isRanInsideXcodeSbvZ">isRanInsideXcode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicates whether a program is ran from inside Xcode
+(i.e. the executable&rsquo;s path contains /DerivedData or is an XCTest run from /private/tmp)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">isRanInsideXcode</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="p">{</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="k">in</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Absolute%20Path%20Resolution"></a>
+                <a name="//apple_ref/swift/Section/Absolute Path Resolution" class="dashAnchor"></a>
+                <a href="#/Absolute%20Path%20Resolution">
+                  <h3 class="section-name">Absolute Path Resolution</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12FileResolverAAV16executableFolderSSvZ"></a>
+                    <a name="//apple_ref/swift/Variable/executableFolder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12FileResolverAAV16executableFolderSSvZ">executableFolder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Absolute path to the executable&rsquo;s folder</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">executableFolder</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n"><a href="../Structs/FileResolver.html#/s:12FileResolverAAV19executableFolderURL10Foundation0E0VvZ">executableFolderURL</a></span><span class="o">.</span><span class="n">path</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12FileResolverAAV13projectFolderSSvZ"></a>
+                    <a name="//apple_ref/swift/Variable/projectFolder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12FileResolverAAV13projectFolderSSvZ">projectFolder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Absolute path to the project&rsquo;s root folder</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">projectFolder</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n"><a href="../Structs/FileResolver.html#/s:12FileResolverAAV16projectFolderURL10Foundation0E0VvZ">projectFolderURL</a></span><span class="o">.</span><span class="n">path</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12FileResolverAAV23presentWorkingDirectorySSvZ"></a>
+                    <a name="//apple_ref/swift/Variable/presentWorkingDirectory" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12FileResolverAAV23presentWorkingDirectorySSvZ">presentWorkingDirectory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Absolute path to the present working directory (PWD)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">presentWorkingDirectory</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n"><a href="../Structs/FileResolver.html#/s:12FileResolverAAV26presentWorkingDirectoryURL10Foundation0F0VvZ">presentWorkingDirectoryURL</a></span><span class="o">.</span><span class="n">path</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Absolute%20URL%20Path%20Resolution"></a>
+                <a name="//apple_ref/swift/Section/Absolute URL Path Resolution" class="dashAnchor"></a>
+                <a href="#/Absolute%20URL%20Path%20Resolution">
+                  <h3 class="section-name">Absolute URL Path Resolution</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12FileResolverAAV26presentWorkingDirectoryURL10Foundation0F0VvZ"></a>
+                    <a name="//apple_ref/swift/Variable/presentWorkingDirectoryURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12FileResolverAAV26presentWorkingDirectoryURL10Foundation0F0VvZ">presentWorkingDirectoryURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Directory containing the Package.swift of the project when run through XCode or XCTest
+Otherwise, returns the current working directory</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">presentWorkingDirectoryURL</span><span class="p">:</span> <span class="kt">URL</span> <span class="o">=</span> <span class="p">{</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">URL</span> <span class="k">in</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12FileResolverAAV13executableURL10Foundation0D0VvZ"></a>
+                    <a name="//apple_ref/swift/Variable/executableURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12FileResolverAAV13executableURL10Foundation0D0VvZ">executableURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">FileResolver</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12FileResolverAAV19executableFolderURL10Foundation0E0VvZ"></a>
+                    <a name="//apple_ref/swift/Variable/executableFolderURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12FileResolverAAV19executableFolderURL10Foundation0E0VvZ">executableFolderURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Directory containing the executable of the project, or, if run from inside Xcode,
+the /.build/debug folder in the project&rsquo;s root folder.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">executableFolderURL</span><span class="p">:</span> <span class="kt">URL</span> <span class="o">=</span> <span class="p">{</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">URL</span> <span class="k">in</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12FileResolverAAV16projectFolderURL10Foundation0E0VvZ"></a>
+                    <a name="//apple_ref/swift/Variable/projectFolderURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12FileResolverAAV16projectFolderURL10Foundation0E0VvZ">projectFolderURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Directory containing the Package.swift of the project (as determined by traversing
+up the directory structure starting at the directory containing the executable), or
+if no Package.swift is found then the directory containing the executable</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">projectFolderURL</span><span class="p">:</span> <span class="kt">URL</span> <span class="o">=</span> <span class="p">{</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">URL</span> <span class="k">in</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2017-11-15)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
