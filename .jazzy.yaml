@@ -1,0 +1,14 @@
+module: Path
+author: IBM
+github_url: https://github.com/IBM-Swift/Path/
+
+theme: fullwidth
+clean: true
+exclude: [Packages]
+
+readme: README.md
+
+skip_undocumented: false
+hide_documentation_coverage: false
+
+xcodebuild_arguments: [-project, Path.xcodeproj, -target, Path, LIBRARY_SEARCH_PATHS=.build/debug]
