@@ -82,6 +82,10 @@ public struct FileResolver {
             if let range = sourceFile.range(of: "/checkouts/") {
                 // In Swift 3.1 and newer, package source code is downloaded to /<build-path>/checkouts
                 return URL(fileURLWithPath: sourceFile[..<range.lowerBound] + "/debug")
+            } else if let range = sourceFile.range(of: "/Packages/") {
+                // In Swift 3.0-3.0.2 (or editable package in Swift 3.1), package source code is downloaded to /Packages
+                // Since we don't know /<build-path>, assume /.build instead
+                return URL(fileURLWithPath: sourceFile[..<range.lowerBound] + "/.build/debug")
             }
 
             Log.warning("Cannot infer /.build/debug folder location from source code structure. Using executable folder as determined from inside Xcode.")
