@@ -1,4 +1,4 @@
-# Path
+# FileResolver
 
 > Utility for resolving paths and execution environments
 
@@ -8,7 +8,7 @@
 ![Apache 2](https://img.shields.io/badge/license-Apache2-blue.svg?style=flat)
 
 ## Version Info
-The latest release of `Path` (v0.x.x) runs on Swift 4.0 and newer, on both macOS and Ubuntu Linux
+The latest release of `FileResolver` (v0.x.x) runs on Swift 4.0 and newer, on both macOS and Ubuntu Linux
 
 ## Installation
 
