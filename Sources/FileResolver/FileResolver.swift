@@ -59,7 +59,7 @@ public struct FileResolver {
 
     }().standardized
 
-    // This URL is pointing to the executable, always
+    /// This URL is pointing to the executable, always
     public static let executableURL: URL = { () -> URL in
         #if os(Linux)
             // Bundle is not available on Linux yet
@@ -106,11 +106,15 @@ public struct FileResolver {
       return url
 
       }().standardized
+}
 
-    // URL pointing to this source file
+/// FileResolver extension defining private helper methods
+private extension FileResolver {
+
+    /// URL pointing to this source file
     private static let sourceFileURL: URL = URL(fileURLWithPath: #file)
 
-    // Takes a starting directory and iterates down the tree to find package.swift (the root directory)
+    /// Takes a starting directory and iterates down the tree to find package.swift (the root directory)
     private static let projectHeadIterator = { (startingDir: URL) -> URL? in
         let fileManager = FileManager()
         var startingDir = startingDir.appendingPathComponent("dummy")

@@ -1,12 +1,6 @@
 {
   "warnings": [
-    {
-      "file": "/Users/AaronLiberatore/Documents/FileResolver/Sources/FileResolver/FileResolver.swift",
-      "line": 63,
-      "symbol": "FileResolver.executableURL",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    }
+
   ],
   "source_directory": "/Users/AaronLiberatore/Documents/FileResolver"
 }
