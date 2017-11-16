@@ -23,7 +23,7 @@ public struct FileResolver {
     // MARK: Environment Information
 
     /// Indicates whether a code is executed from within XCTestCase (i.e. the executable is XCTest)
-    public static let isRanFromXCTest: Bool = executableURL.path.hasSuffix("/xctest") || executableURL.lastPathComponent == "xctest"
+    public static let isRanFromXCTest: Bool = executableURL.path.hasSuffix("/xctest") || executableURL.lastPathComponent.split(separator: ".").last == "xctest"
 
     /// Indicates whether a program is ran from inside Xcode
     /// (i.e. the executable's path contains /DerivedData or is an XCTest run from /private/tmp)
