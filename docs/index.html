@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FileKit  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="FileKit  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          FileKit Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/IBM-Swift/FileKit/">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">FileKit Reference</a>
+      <img class="carat" src="img/carat.png" />
+      FileKit  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/FileKit.html">FileKit</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            
+            <h1 id='filekit' class='heading'>FileKit</h1>
+
+<blockquote>
+<p>Utility for resolving common paths</p>
+</blockquote>
+
+<p><a href="https://travis-ci.org/IBM-Swift/FileKit"><img src="https://travis-ci.org/IBM-Swift/FileKit.svg?branch=master" alt="Build Status - Master"></a>
+<img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
+<img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
+<img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2"></p>
+<h2 id='version-info' class='heading'>Version Info</h2>
+
+<p>The latest release of <code><a href="Classes/FileKit.html">FileKit</a></code> (v0.x.x) runs on Swift 4.0 and newer, on both macOS and Ubuntu Linux</p>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='via-swift-package-manager' class='heading'>Via Swift Package Manager</h3>
+
+<p>Add <code><a href="Classes/FileKit.html">FileKit</a></code> to your <code>Package.swift</code>:</p>
+<pre class="highlight swift"><code>
+<span class="k">let</span> <span class="nv">package</span> <span class="o">=</span> <span class="kt">Package</span><span class="p">(</span>
+  <span class="nv">name</span><span class="p">:</span> <span class="s">"&lt;package-name&gt;"</span><span class="p">,</span>
+  <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+    <span class="c1">// Swift 4</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/IBM-Swift/FileKit.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMajor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"0.0.0"</span><span class="p">))</span>
+  <span class="p">]</span>
+<span class="p">)</span>
+
+</code></pre>
+<h2 id='supported-paths' class='heading'>Supported Paths</h2>
+<h4 id='path-to-executable-folder' class='heading'>Path to Executable Folder</h4>
+
+<p>Points to the project executable folder</p>
+<pre class="highlight swift"><code>  <span class="c1">/// Executable Folder String</span>
+  <span class="k">let</span> <span class="nv">stringUrl</span> <span class="o">=</span> <span class="kt">FileKit</span><span class="o">.</span><span class="n">executableFolder</span>
+
+  <span class="c1">/// Executable Folder URL</span>
+  <span class="k">let</span> <span class="nv">urlObject</span> <span class="o">=</span> <span class="kt">FileKit</span><span class="o">.</span><span class="n">executableFolderURL</span>
+
+  <span class="c1">/// Executable File</span>
+  <span class="k">let</span> <span class="nv">urlObject</span> <span class="o">=</span> <span class="kt">FileKit</span><span class="o">.</span><span class="n">executableURL</span>
+
+</code></pre>
+<h4 id='path-to-project-folder' class='heading'>Path to Project Folder</h4>
+
+<p>Directory containing the Package.swift of the project (as determined by traversing up the directory structure starting at the directory containing the executable), or if no Package.swift is found then the directory containing the executable</p>
+<pre class="highlight swift"><code>  <span class="c1">/// Absolute path to the project's root folder</span>
+  <span class="k">let</span> <span class="nv">stringUrl</span> <span class="o">=</span> <span class="kt">FileKit</span><span class="o">.</span><span class="n">projectFolder</span>
+
+  <span class="c1">/// URL to the project's root folder</span>
+  <span class="k">let</span> <span class="nv">urlObject</span> <span class="o">=</span> <span class="kt">FileKit</span><span class="o">.</span><span class="n">projectFolderURL</span>
+
+</code></pre>
+<h4 id='path-to-working-directory' class='heading'>Path to Working Directory</h4>
+
+<p>Provides the standardized working directory, while accounting for environmental changes. When running in Xcode, this returns the directory containing the Package.swift of the project while outside returns the current working directory</p>
+<pre class="highlight swift"><code>  <span class="c1">/// Absolute path to the present working directory</span>
+  <span class="k">let</span> <span class="nv">stringUrl</span> <span class="o">=</span> <span class="kt">FileKit</span><span class="o">.</span><span class="n">workingDirectory</span>
+
+  <span class="c1">/// URL to the project's root folder</span>
+  <span class="k">let</span> <span class="nv">urlObject</span> <span class="o">=</span> <span class="kt">FileKit</span><span class="o">.</span><span class="n">workingDirectoryURL</span>
+
+</code></pre>
+<h4 id='built-in-swift-file-utilities' class='heading'>Built-in Swift File Utilities</h4>
+<pre class="highlight swift"><code>  <span class="c1">/// URL pointing to current file</span>
+  <span class="k">let</span> <span class="nv">stringUrl</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">fileURLWithPath</span><span class="p">:</span> <span class="err">#</span><span class="n">file</span><span class="p">)</span>
+
+</code></pre>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2017-11-16)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

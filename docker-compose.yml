@@ -1,0 +1,7 @@
+app:
+  image: ibmcom/swift-ubuntu:4.0.2
+  ports:
+    - "8080:8080"
+  volumes:
+    - .:/FileKit
+  command: bash -c "cd /FileKit && swift package --build-path .build-ubuntu clean && swift build --build-path .build-ubuntu && swift test"
