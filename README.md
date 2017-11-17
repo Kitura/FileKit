@@ -48,7 +48,7 @@ Points to the project executable folder
 
 #### Path to Project Folder
 
-Directory containing the Package.swift of the project (as determined by traversing up the directory structure starting at the directory containing the executable), or if no Package.swift is found then the directory containing the executable
+Points to the directory containing the Package.swift of the project (as determined by traversing up the directory structure starting at the directory containing the executable), or if no Package.swift is found then the directory containing the executable
 
 ```swift
   /// Absolute path to the project's root folder
