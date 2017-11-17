@@ -16,9 +16,8 @@ class FileKitTests: XCTestCase {
         let executableFolderURL = FileKit.executableFolderURL
 
         XCTAssertEqual(executableFolderURL.path, executableFolder)
-
         #if os(Linux)
-          XCTAssertEqual(executableFolderURL.path, "/FileKit/.build/x86_64-unknown-linux/debug")
+          XCTAssertEqual(executableFolderURL.pathComponents.suffix(4), ["FileKit", ".build", "x86_64-unknown-linux", "debug" ])
           XCTAssertEqual(executableFolderURL.lastPathComponent, "debug")
           XCTAssertEqual(executableURL.pathComponents.suffix(2), ["debug", "FileKitPackageTests.xctest"])
         #else
@@ -34,7 +33,7 @@ class FileKitTests: XCTestCase {
       XCTAssertEqual(projectFolderURL.path, projectFolder)
 
       #if os(Linux)
-        XCTAssertEqual(projectFolderURL.path, "/FileKit")
+        XCTAssertEqual(projectFolderURL.lastPathComponent, "FileKit")
       #else
         XCTAssertEqual(projectFolderURL.lastPathComponent, "Agents")
       #endif
@@ -47,10 +46,10 @@ class FileKitTests: XCTestCase {
       XCTAssertEqual(workingDirectoryURL.path, workingDirectory)
 
       #if os(Linux)
-        XCTAssertEqual(workingDirectoryURL.path, "/FileKit")
+        XCTAssertEqual(workingDirectoryURL.lastPathComponent, "FileKit")
       #else
-        let expectedPath = URL(fileURLWithPath: "").path == "/private/tmp" ? "/private/tmp" : "/Users/AaronLiberatore/Documents/FileKit"
-        XCTAssertEqual(workingDirectoryURL.path, expectedPath)
+        let expectedPath = URL(fileURLWithPath: "").path == "/private/tmp" ? "tmp" : "FileKit"
+        XCTAssertEqual(workingDirectoryURL.lastPathComponent, expectedPath)
       #endif
 
     }
