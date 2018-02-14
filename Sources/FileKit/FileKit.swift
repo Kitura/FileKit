@@ -115,21 +115,22 @@ fileprivate extension FileKit {
 
     /// URL pointing to this source file
     static let sourceFileURL: URL = URL(fileURLWithPath: #file)
+
     /// Takes a starting directory and iterates down the tree to find package.swift (the root directory)
     static let projectHeadIterator = { (startingDir: URL) -> URL? in
 
-    let fileManager = FileManager()
-    var startingDir = startingDir.appendingPathComponent("dummy")
+        let fileManager = FileManager()
+        var startingDir = startingDir.appendingPathComponent("dummy")
 
-    repeat {
-        startingDir.appendPathComponent("..")
-        startingDir.standardize()
-        let packageFilePath = startingDir.appendingPathComponent("Package.swift").path
+        repeat {
+            startingDir.appendPathComponent("..")
+            startingDir.standardize()
+            let packageFilePath = startingDir.appendingPathComponent("Package.swift").path
 
-        if fileManager.fileExists(atPath: packageFilePath) {
-            return startingDir
-        }
-    } while startingDir.path != "/"
+            if fileManager.fileExists(atPath: packageFilePath) {
+                return startingDir
+            }
+        } while startingDir.path != "/"
 
         return nil
     }
