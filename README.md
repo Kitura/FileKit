@@ -16,12 +16,25 @@ The latest release of `FileKit` (v0.x.x) runs on Swift 4.0 and newer, on both ma
 
 Add `FileKit` to your `Package.swift`:
 
+#### Swift 3
+
 ```swift
 
 let package = Package(
-  name: "<package-name>",
+    name: "FileKit",
+    dependencies: [
+        .Package(url: "https://github.com/IBM-Swift/FileKit.git", majorVersion: 1, minor: 7)
+    ]
+)
+```
+
+#### Swift 4
+
+```swift
+
+let package = Package(
+  name: "FileKit",
   dependencies: [
-    // Swift 4
     .package(url: "https://github.com/IBM-Swift/FileKit.git", .upToNextMajor(from: "0.0.0"))
   ]
 )

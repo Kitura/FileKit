@@ -69,11 +69,14 @@ public class FileKit {
 
             if let range = sourceFile.range(of: "/checkouts/") {
                 // In Swift 4.0 and newer, package source code is downloaded to /<build-path>/checkouts
-                return URL(fileURLWithPath: sourceFile[..<range.lowerBound] + "/debug")
+                let index = sourceFile.index(sourceFile.endIndex, offsetBy: -1)
+                return URL(fileURLWithPath: sourceFile.substring(to: index) + "/debug")
+
             } else if let range = sourceFile.range(of: "/Packages/") {
                 // Editable packages in Swift 4.0, package source code is downloaded to /Packages
                 // Since we don't know /<build-path>, assume /.build instead
-                return URL(fileURLWithPath: sourceFile[..<range.lowerBound] + "/.build/debug")
+                let index = sourceFile.index(sourceFile.endIndex, offsetBy: -1)
+                return URL(fileURLWithPath: sourceFile.substring(to: index) + "/.build/debug")
             }
 
             Log.warning("Cannot infer /.build/debug folder location from source code structure. Using executable folder as determined from inside Xcode.")
@@ -97,25 +100,25 @@ public class FileKit {
 }
 
 // Environment Information
-private extension FileKit {
+fileprivate extension FileKit {
 
-  /// Indicates whether a code is executed from within XCTestCase (i.e. the executable is XCTest)
-  private static let isRanFromXCTest: Bool = executableURL.path.hasSuffix("/xctest")
+    /// Indicates whether a code is executed from within XCTestCase (i.e. the executable is XCTest)
+    static let isRanFromXCTest: Bool = executableURL.path.hasSuffix("/xctest")
 
-  /// Indicates whether a program is ran from inside Xcode
-  /// (i.e. the executable's path contains /DerivedData)
-  private static let isRanInsideXcode: Bool = executableURL.path.range(of: "/DerivedData/") != nil
-
+    /// Indicates whether a program is ran from inside Xcode
+    /// (i.e. the executable's path contains /DerivedData)
+    static let isRanInsideXcode: Bool = executableURL.path.range(of: "/DerivedData/") != nil
 }
 
 /// FileKit extension defining private helper methods
-private extension FileKit {
+fileprivate extension FileKit {
 
     /// URL pointing to this source file
-    private static let sourceFileURL: URL = URL(fileURLWithPath: #file)
+    static let sourceFileURL: URL = URL(fileURLWithPath: #file)
 
     /// Takes a starting directory and iterates down the tree to find package.swift (the root directory)
-    private static let projectHeadIterator = { (startingDir: URL) -> URL? in
+    static let projectHeadIterator = { (startingDir: URL) -> URL? in
+
         let fileManager = FileManager()
         var startingDir = startingDir.appendingPathComponent("dummy")
 
