@@ -17,51 +17,24 @@
 import Foundation
 import LoggerAPI
 
-/// Utility providing path resolution and execution environment information
+/// Resolves commonly used paths, including the project, executable and working directories.
 public class FileKit {
 
-    // MARK: Absolute Path Resolution
+    // MARK: Path to Executable Folder
 
-    /// Absolute path to the executable's folder
+    /// Absolute path to the executable's folder.
+    /// ### Usage Example: ###
+    /// ```swift
+    /// let urlString = FileKit.executableFolder
+    /// ```
     public static let executableFolder: String = executableFolderURL.path
 
-    /// Absolute path to the project's root folder
-    public static let projectFolder: String = projectFolderURL.path
-
-    /// Absolute path to the present working directory (PWD)
-    public static let workingDirectory: String = workingDirectoryURL.path
-
-    // MARK: Absolute URL Path Resolution
-
-    /// Provides the standardized working directory accounting for environmental changes.
-    /// When running in Xcode, this returns the directory containing the Package.swift of the project
-    /// while outside returns the current working directory
-    public static let workingDirectoryURL: URL = { () -> URL in
-        guard isRanInsideXcode || isRanFromXCTest, let url = projectHeadIterator(executableFolderURL) else {
-            return URL(fileURLWithPath: "")
-        }
-
-        Log.debug("Running from Xcode or XCTest. Using project folder as pwd folder.")
-
-        return url
-
-    }().standardized
-
-    /// This URL points to the executable
-    public static let executableURL: URL = { () -> URL in
-        #if os(Linux)
-            // Bundle is not available on Linux yet
-            // Get path to executable via /proc/self/exe
-            // https://unix.stackexchange.com/questions/333225/which-process-is-proc-self-for
-            return URL(fileURLWithPath: "/proc/self/exe")
-        #else
-            // Bundle is available on Darwin
-            return (Bundle.main.executableURL ?? URL(fileURLWithPath: CommandLine.arguments[0]))
-        #endif
-        }().resolvingSymlinksInPath()
-
     /// Directory containing the executable of the project, or, if run from inside Xcode,
-    /// the /.build/debug folder in the project's root folder.
+    /// the `/.build/debug` folder in the project's root folder.
+    /// ### Usage Example: ###
+    /// ```swift
+    /// let urlObject = FileKit.executableFolderURL
+    /// ```
     public static let executableFolderURL: URL = { () -> URL in
         if isRanInsideXcode || isRanFromXCTest {
             // Get URL to /debug manually
@@ -82,18 +55,78 @@ public class FileKit {
         return executableURL.appendingPathComponent("..")
         }().standardized
 
-    /// Directory containing the Package.swift of the project (as determined by traversing
+    // MARK: Executable
+
+    /// This URL points to the executable.
+    /// ### Usage Example: ###
+    /// ```swift
+    /// let urlObject = FileKit.executableURL
+    /// ```
+    public static let executableURL: URL = { () -> URL in
+        #if os(Linux)
+        // Bundle is not available on Linux yet
+        // Get path to executable via /proc/self/exe
+        // https://unix.stackexchange.com/questions/333225/which-process-is-proc-self-for
+        return URL(fileURLWithPath: "/proc/self/exe")
+        #else
+        // Bundle is available on Darwin
+        return (Bundle.main.executableURL ?? URL(fileURLWithPath: CommandLine.arguments[0]))
+        #endif
+    }().resolvingSymlinksInPath()
+
+    // MARK: Path to Project Folder
+
+    /// Absolute path to the project's root folder.
+    /// ### Usage Example: ###
+    /// ```swift
+    /// let urlString = FileKit.projectFolder
+    /// ```
+    public static let projectFolder: String = projectFolderURL.path
+
+    /// Directory containing the `Package.swift` of the project (as determined by traversing
     /// up the directory structure starting at the directory containing the executable), or
-    /// if no Package.swift is found then the directory containing the executable
+    /// if no `Package.swift` is found then the directory containing the executable.
+    /// ### Usage Example: ###
+    /// ```swift
+    /// let urlObject = FileKit.projectFolderURL
+    /// ```
     public static let projectFolderURL: URL = { () -> URL in
-      guard let url = projectHeadIterator(executableFolderURL) else {
-        Log.warning("No Package.swift found. Using executable folder as project folder.")
-        return executableFolderURL
-      }
+        guard let url = projectHeadIterator(executableFolderURL) else {
+            Log.warning("No Package.swift found. Using executable folder as project folder.")
+            return executableFolderURL
+        }
 
-      return url
+        return url
 
-      }().standardized
+    }().standardized
+
+    // MARK: Path to Working Directory
+
+    /// Absolute path to the present working directory (PWD).
+    /// ### Usage Example: ###
+    /// ```swift
+    /// let urlString = FileKit.workingDirectory
+    /// ```
+    public static let workingDirectory: String = workingDirectoryURL.path
+
+    /// Provides the standardized working directory accounting for environmental changes.
+    /// When running in Xcode, this returns the directory containing the `Package.swift` of the project,
+    /// while outside Xcode it returns the current working directory.
+    /// ### Usage Example: ###
+    /// ```swift
+    /// let urlObject = FileKit.workingDirectoryURL
+    /// ```
+    public static let workingDirectoryURL: URL = { () -> URL in
+        guard isRanInsideXcode || isRanFromXCTest, let url = projectHeadIterator(executableFolderURL) else {
+            return URL(fileURLWithPath: "")
+        }
+
+        Log.debug("Running from Xcode or XCTest. Using project folder as pwd folder.")
+
+        return url
+
+    }().standardized
+
 }
 
 // Environment Information

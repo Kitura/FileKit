@@ -1,38 +1,63 @@
+<p align="center">
+    <a href="http://kitura.io/">
+        <img src="https://raw.githubusercontent.com/IBM-Swift/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
+    </a>
+</p>
+
+<p align="center">
+    <a href="https://ibm-swift.github.io/FileKit/index.html">
+    <img src="https://img.shields.io/badge/apidoc-FileKit-1FBCE4.svg?style=flat" alt="APIDoc">
+    </a>
+    <a href="https://travis-ci.org/IBM-Swift/FileKit">
+    <img src="https://travis-ci.org/IBM-Swift/FileKit.svg?branch=master" alt="Build Status - Master">
+    </a>
+    <img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
+    <img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
+    <img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2">
+    <a href="http://swift-at-ibm-slack.mybluemix.net/">
+    <img src="http://swift-at-ibm-slack.mybluemix.net/badge.svg" alt="Slack Status">
+    </a>
+</p>
+
 # FileKit
 
-> Utility for resolving common paths
+Resolves commonly used paths, including the project, executable and working directories.
 
-[![Build Status - Master](https://travis-ci.org/IBM-Swift/FileKit.svg?branch=master)](https://travis-ci.org/IBM-Swift/FileKit)
-![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
-![Linux](https://img.shields.io/badge/os-linux-green.svg?style=flat)
-![Apache 2](https://img.shields.io/badge/license-Apache2-blue.svg?style=flat)
+## Version
+The latest release of `FileKit` (0.x.x) runs on Swift 4.0 and newer, on both macOS and Ubuntu Linux.
 
-## Version Info
-The latest release of `FileKit` (v0.x.x) runs on Swift 4.0 and newer, on both macOS and Ubuntu Linux
+## Usage
 
-## Installation
+### Add dependencies
 
-### Via Swift Package Manager
-
-Add `FileKit` to your `Package.swift`:
+Add `FileKit` to the dependencies within your application's `Package.swift` file. Substitute `"x.x.x"` with the latest `FileKit` [release](https://github.com/IBM-Swift/FileKit/releases).
 
 ```swift
+.package(url: "https://github.com/IBM-Swift/FileKit.git", from: "x.x.x")
+```
+Add `FileKit` to your target's dependencies:
 
-let package = Package(
-  name: "<package-name>",
-  dependencies: [
-    // Swift 4
-    .package(url: "https://github.com/IBM-Swift/FileKit.git", .upToNextMajor(from: "0.0.0"))
-  ]
-)
+```Swift
+.target(name: "example", dependencies: ["FileKit"]),
+```
 
+#### Import package
+
+```swift
+import FileKit
+```
+
+You will also need to import the `Foundation` package if you're handling URLs:
+
+```swift
+import Foundation
 ```
 
 ## Supported Paths
 
 #### Path to Executable Folder
 
-Points to the project executable folder
+Points to the project executable folder.
 
 ```swift
   /// Executable Folder String
@@ -43,12 +68,11 @@ Points to the project executable folder
 
   /// Executable File
   let urlObject = FileKit.executableURL
-
 ```
 
 #### Path to Project Folder
 
-Points to the directory containing the Package.swift of the project (as determined by traversing up the directory structure starting at the directory containing the executable), or if no Package.swift is found then the directory containing the executable
+Points to the directory containing the `Package.swift` of the project (as determined by traversing up the directory structure starting at the directory containing the executable), or if no `Package.swift` is found then the directory containing the executable.
 
 ```swift
   /// Absolute path to the project's root folder
@@ -56,12 +80,11 @@ Points to the directory containing the Package.swift of the project (as determin
 
   /// URL to the project's root folder
   let urlObject = FileKit.projectFolderURL
-
 ```
 
 #### Path to Working Directory
 
-Provides the standardized working directory, while accounting for environmental changes. When running in Xcode, this returns the directory containing the Package.swift of the project while outside returns the current working directory
+Provides the standardized working directory, while accounting for environmental changes. When running in Xcode, this returns the directory containing the `Package.swift` of the project, while outside Xcode it returns the current working directory.
 
 ```swift
   /// Absolute path to the present working directory
@@ -69,13 +92,25 @@ Provides the standardized working directory, while accounting for environmental 
 
   /// URL to the project's root folder
   let urlObject = FileKit.workingDirectoryURL
-
 ```
 
-#### Built-in Swift File Utilities
+#### Native Swift File Utilities
+
+Note. As this is native Swift functionality you can use this without importing FileKit.
 
 ```swift
-  /// URL pointing to current file
+  /// URL pointing to the current source file when it was compiled.
   let stringUrl = URL(fileURLWithPath: #file)
-
 ```
+
+## API documentation
+
+For more information visit our [API reference](http://ibm-swift.github.io/FileKit/).
+
+## Community
+
+We love to talk server-side Swift, and Kitura. Join our [Slack](http://swift-at-ibm-slack.mybluemix.net/) to meet the team!
+
+## License
+
+This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/IBM-Swift/FileKit/blob/master/LICENSE).
