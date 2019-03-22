@@ -22,15 +22,20 @@ public class FileKit {
 
     // MARK: Path to Executable Folder
 
-    /// Absolute path to the executable's folder.
+    /// The absolute path to the folder containing the project executable.
+    ///
+    /// For example, when running an executable called `MySwiftProject` within Xcode this would be "/Users/username/MySwiftProject/.build/debug", when running the same project from the command line this would be "/Users/username/MySwiftProject/.build/x86_64-apple-macosx10.10/debug".
     /// ### Usage Example: ###
     /// ```swift
     /// let urlString = FileKit.executableFolder
     /// ```
     public static let executableFolder: String = executableFolderURL.path
 
-    /// Directory containing the executable of the project, or, if run from inside Xcode,
+    /// URL that points to the directory containing the project executable, or, if run from inside Xcode,
     /// the `/.build/debug` folder in the project's root folder.
+    ///
+    /// For example when running an executable called `MySwiftProject` within Xcode this would be
+    /// `file:///Users/username/MySwiftProject/.build/debug/`.
     /// ### Usage Example: ###
     /// ```swift
     /// let urlObject = FileKit.executableFolderURL
@@ -57,7 +62,17 @@ public class FileKit {
 
     // MARK: Executable
 
-    /// This URL points to the executable.
+    /// URL that points to the executable.
+    ///
+    /// For example, when running an executable called `MySwiftProject` from the command line
+    /// this would be:
+    ///
+    /// `file:///Users/username/MySwiftProject/.build/x86_64-apple-macosx10.10/debug/MySwiftProject`.
+    ///
+    /// When running within Xcode it would be:
+    ///
+    /// `file:///Users/username/Library/Developer/Xcode/DerivedData/MySwiftProject-fjgfjmxrlbhzkhfmxdgeipylyeay/Build/Products/Debug/MySwiftProject`.
+    ///
     /// ### Usage Example: ###
     /// ```swift
     /// let urlObject = FileKit.executableURL
@@ -76,16 +91,26 @@ public class FileKit {
 
     // MARK: Path to Project Folder
 
-    /// Absolute path to the project's root folder.
+    /// Absolute path to the directory containing the `Package.swift` of the project (as determined by
+    /// traversing up the directory structure starting at the directory containing the executable), or
+    /// if no `Package.swift` is found then the directory containing the executable.
+    ///
+    /// For example, when running an executable called `MySwiftProject` this would be something like:
+    /// `/Users/username/MySwiftProject`.
+    ///
     /// ### Usage Example: ###
     /// ```swift
     /// let urlString = FileKit.projectFolder
     /// ```
     public static let projectFolder: String = projectFolderURL.path
 
-    /// Directory containing the `Package.swift` of the project (as determined by traversing
-    /// up the directory structure starting at the directory containing the executable), or
-    /// if no `Package.swift` is found then the directory containing the executable.
+    /// URL that points to the directory containing the `Package.swift` of the project (as determined
+    /// by traversing up the directory structure starting at the directory containing the executable),
+    /// or if no `Package.swift` is found then the directory containing the executable.
+    ///
+    /// For example, when running an executable called `MySwiftProject` this would be something like:
+    /// `file:///Users/username/MySwiftProject/`.
+    ///
     /// ### Usage Example: ###
     /// ```swift
     /// let urlObject = FileKit.projectFolderURL
@@ -102,14 +127,16 @@ public class FileKit {
 
     // MARK: Path to Working Directory
 
-    /// Absolute path to the present working directory (PWD).
+    /// Provides the standardized working directory accounting for environmental changes.
+    /// When running in Xcode, this returns the directory containing the `Package.swift` of the project,
+    /// while outside Xcode it returns the current working directory.
     /// ### Usage Example: ###
     /// ```swift
     /// let urlString = FileKit.workingDirectory
     /// ```
     public static let workingDirectory: String = workingDirectoryURL.path
 
-    /// Provides the standardized working directory accounting for environmental changes.
+    /// URL that points to the standardized working directory accounting for environmental changes.
     /// When running in Xcode, this returns the directory containing the `Package.swift` of the project,
     /// while outside Xcode it returns the current working directory.
     /// ### Usage Example: ###

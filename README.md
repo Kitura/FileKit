@@ -57,7 +57,9 @@ import Foundation
 
 #### Path to Executable Folder
 
-Points to the project executable folder.
+Points to the folder containing the project executable.
+
+For example, when running an executable called `MySwiftProject` within Xcode the executable folder string would be "/Users/username/MySwiftProject/.build/debug", when running the same project from the command line this would be "/Users/username/MySwiftProject/.build/x86_64-apple-macosx10.10/debug".
 
 ```swift
   /// Executable Folder String
@@ -69,6 +71,11 @@ Points to the project executable folder.
   /// Executable File
   let urlObject = FileKit.executableURL
 ```
+
+Note, the `executableURL` will be different when running inside Xcode versus running from the command line.
+For example, when running an executable called `MySwiftProject`:
+- Running on the command line - `file:///Users/username/MySwiftProject/.build/x86_64-apple-macosx10.10/debug/MySwiftProject`
+- Running within Xcode - `file:///Users/username/Library/Developer/Xcode/DerivedData/MySwiftProject-fjgfjmxrlbhzkhfmxdgeipylyeay/Build/Products/Debug/MySwiftProject`.
 
 #### Path to Project Folder
 
