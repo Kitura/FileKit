@@ -64,37 +64,55 @@
         <section class="section">
           <div class="section-content">
             
-            <h1 id='filekit' class='heading'>FileKit</h1>
+            <p align="center">
+    <a href="http://kitura.io/">
+        <img src="https://raw.githubusercontent.com/IBM-Swift/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
+    </a>
+</p>
 
-<blockquote>
-<p>Utility for resolving common paths</p>
-</blockquote>
+<p align="center">
+    <a href="https://ibm-swift.github.io/FileKit/index.html">
+    <img src="https://img.shields.io/badge/apidoc-FileKit-1FBCE4.svg?style=flat" alt="APIDoc">
+    </a>
+    <a href="https://travis-ci.org/IBM-Swift/FileKit">
+    <img src="https://travis-ci.org/IBM-Swift/FileKit.svg?branch=master" alt="Build Status - Master">
+    </a>
+    <img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
+    <img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
+    <img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2">
+    <a href="http://swift-at-ibm-slack.mybluemix.net/">
+    <img src="http://swift-at-ibm-slack.mybluemix.net/badge.svg" alt="Slack Status">
+    </a>
+</p>
+<h1 id='filekit' class='heading'>FileKit</h1>
 
-<p><a href="https://travis-ci.org/IBM-Swift/FileKit"><img src="https://travis-ci.org/IBM-Swift/FileKit.svg?branch=master" alt="Build Status - Master"></a>
-<img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
-<img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
-<img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2"></p>
-<h2 id='version-info' class='heading'>Version Info</h2>
+<p>Resolves commonly used paths, including the project, executable and working directories.</p>
+<h2 id='version' class='heading'>Version</h2>
 
-<p>The latest release of <code><a href="Classes/FileKit.html">FileKit</a></code> (v0.x.x) runs on Swift 4.0 and newer, on both macOS and Ubuntu Linux</p>
-<h2 id='installation' class='heading'>Installation</h2>
-<h3 id='via-swift-package-manager' class='heading'>Via Swift Package Manager</h3>
+<p>The latest release of <code><a href="Classes/FileKit.html">FileKit</a></code> (0.x.x) runs on Swift 4.0 and newer, on both macOS and Ubuntu Linux.</p>
+<h2 id='usage' class='heading'>Usage</h2>
+<h3 id='add-dependencies' class='heading'>Add dependencies</h3>
 
-<p>Add <code><a href="Classes/FileKit.html">FileKit</a></code> to your <code>Package.swift</code>:</p>
-<pre class="highlight swift"><code>
-<span class="k">let</span> <span class="nv">package</span> <span class="o">=</span> <span class="kt">Package</span><span class="p">(</span>
-  <span class="nv">name</span><span class="p">:</span> <span class="s">"&lt;package-name&gt;"</span><span class="p">,</span>
-  <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-    <span class="c1">// Swift 4</span>
-    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/IBM-Swift/FileKit.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMajor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"0.0.0"</span><span class="p">))</span>
-  <span class="p">]</span>
-<span class="p">)</span>
+<p>Add <code><a href="Classes/FileKit.html">FileKit</a></code> to the dependencies within your application&rsquo;s <code>Package.swift</code> file. Substitute <code>&quot;x.x.x&quot;</code> with the latest <code><a href="Classes/FileKit.html">FileKit</a></code> <a href="https://github.com/IBM-Swift/FileKit/releases">release</a>.</p>
+<pre class="highlight swift"><code><span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/IBM-Swift/FileKit.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"x.x.x"</span><span class="p">)</span>
+</code></pre>
 
+<p>Add <code><a href="Classes/FileKit.html">FileKit</a></code> to your target&rsquo;s dependencies:</p>
+<pre class="highlight plaintext"><code>.target(name: "example", dependencies: ["FileKit"]),
+</code></pre>
+<h4 id='import-package' class='heading'>Import package</h4>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">FileKit</span>
+</code></pre>
+
+<p>You will also need to import the <code>Foundation</code> package if you&rsquo;re handling URLs:</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Foundation</span>
 </code></pre>
 <h2 id='supported-paths' class='heading'>Supported Paths</h2>
 <h4 id='path-to-executable-folder' class='heading'>Path to Executable Folder</h4>
 
-<p>Points to the project executable folder</p>
+<p>Points to the folder containing the project executable.</p>
+
+<p>For example, when running an executable called <code>MySwiftProject</code> within Xcode the executable folder string would be <q>/Users/username/MySwiftProject/.build/debug</q>, when running the same project from the command line this would be <q>/Users/username/MySwiftProject/.build/x86_64-apple-macosx10.10/debug</q>.</p>
 <pre class="highlight swift"><code>  <span class="c1">/// Executable Folder String</span>
   <span class="k">let</span> <span class="nv">stringUrl</span> <span class="o">=</span> <span class="kt">FileKit</span><span class="o">.</span><span class="n">executableFolder</span>
 
@@ -103,33 +121,48 @@
 
   <span class="c1">/// Executable File</span>
   <span class="k">let</span> <span class="nv">urlObject</span> <span class="o">=</span> <span class="kt">FileKit</span><span class="o">.</span><span class="n">executableURL</span>
-
 </code></pre>
+
+<p>Note, the <code>executableURL</code> will be different when running inside Xcode versus running from the command line.
+For example, when running an executable called <code>MySwiftProject</code>:</p>
+
+<ul>
+<li>Running on the command line - <code>file:///Users/username/MySwiftProject/.build/x86_64-apple-macosx10.10/debug/MySwiftProject</code></li>
+<li>Running within Xcode - <code>file:///Users/username/Library/Developer/Xcode/DerivedData/MySwiftProject-fjgfjmxrlbhzkhfmxdgeipylyeay/Build/Products/Debug/MySwiftProject</code>.</li>
+</ul>
 <h4 id='path-to-project-folder' class='heading'>Path to Project Folder</h4>
 
-<p>Directory containing the Package.swift of the project (as determined by traversing up the directory structure starting at the directory containing the executable), or if no Package.swift is found then the directory containing the executable</p>
+<p>Points to the directory containing the <code>Package.swift</code> of the project (as determined by traversing up the directory structure starting at the directory containing the executable), or if no <code>Package.swift</code> is found then the directory containing the executable.</p>
 <pre class="highlight swift"><code>  <span class="c1">/// Absolute path to the project's root folder</span>
   <span class="k">let</span> <span class="nv">stringUrl</span> <span class="o">=</span> <span class="kt">FileKit</span><span class="o">.</span><span class="n">projectFolder</span>
 
   <span class="c1">/// URL to the project's root folder</span>
   <span class="k">let</span> <span class="nv">urlObject</span> <span class="o">=</span> <span class="kt">FileKit</span><span class="o">.</span><span class="n">projectFolderURL</span>
-
 </code></pre>
 <h4 id='path-to-working-directory' class='heading'>Path to Working Directory</h4>
 
-<p>Provides the standardized working directory, while accounting for environmental changes. When running in Xcode, this returns the directory containing the Package.swift of the project while outside returns the current working directory</p>
+<p>Provides the standardized working directory, while accounting for environmental changes. When running in Xcode, this returns the directory containing the <code>Package.swift</code> of the project, while outside Xcode it returns the current working directory.</p>
 <pre class="highlight swift"><code>  <span class="c1">/// Absolute path to the present working directory</span>
   <span class="k">let</span> <span class="nv">stringUrl</span> <span class="o">=</span> <span class="kt">FileKit</span><span class="o">.</span><span class="n">workingDirectory</span>
 
   <span class="c1">/// URL to the project's root folder</span>
   <span class="k">let</span> <span class="nv">urlObject</span> <span class="o">=</span> <span class="kt">FileKit</span><span class="o">.</span><span class="n">workingDirectoryURL</span>
-
 </code></pre>
-<h4 id='built-in-swift-file-utilities' class='heading'>Built-in Swift File Utilities</h4>
-<pre class="highlight swift"><code>  <span class="c1">/// URL pointing to current file</span>
-  <span class="k">let</span> <span class="nv">stringUrl</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">fileURLWithPath</span><span class="p">:</span> <span class="err">#</span><span class="n">file</span><span class="p">)</span>
+<h4 id='native-swift-file-utilities' class='heading'>Native Swift File Utilities</h4>
 
+<p>Note. As this is native Swift functionality you can use this without importing FileKit.</p>
+<pre class="highlight swift"><code>  <span class="c1">/// URL pointing to the current source file when it was compiled.</span>
+  <span class="k">let</span> <span class="nv">stringUrl</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">fileURLWithPath</span><span class="p">:</span> <span class="kd">#file</span><span class="p">)</span>
 </code></pre>
+<h2 id='api-documentation' class='heading'>API documentation</h2>
+
+<p>For more information visit our <a href="http://ibm-swift.github.io/FileKit/">API reference</a>.</p>
+<h2 id='community' class='heading'>Community</h2>
+
+<p>We love to talk server-side Swift, and Kitura. Join our <a href="http://swift-at-ibm-slack.mybluemix.net/">Slack</a> to meet the team!</p>
+<h2 id='license' class='heading'>License</h2>
+
+<p>This library is licensed under Apache 2.0. Full license text is available in <a href="https://github.com/IBM-Swift/FileKit/blob/master/LICENSE">LICENSE</a>.</p>
 
           </div>
         </section>
@@ -138,8 +171,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2017-11-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2019-03-27)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
