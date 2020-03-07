@@ -194,7 +194,8 @@ private extension FileKit {
             }
             if fileManager.fileExists(atPath: infoFilePath),
                let contents = fileManager.contents(atPath: infoFilePath),
-               let plist = try? PropertyListSerialization.propertyList(from: contents, options: [], format: nil) as? [String: Any],
+               let plistRaw = try? PropertyListSerialization.propertyList(from: contents, options: [], format: nil),
+               let plist = plistRaw as? [String: Any],
                let workspacePath = plist["WorkspacePath"] as? String {
                 return URL(fileURLWithPath: workspacePath, isDirectory: true)
             }
