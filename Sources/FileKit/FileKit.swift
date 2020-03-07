@@ -193,8 +193,9 @@ private extension FileKit {
                 return startingDir
             }
             if fileManager.fileExists(atPath: infoFilePath),
-               let contents = NSDictionary(contentsOfFile: infoFilePath),
-               let workspacePath = contents["WorkspacePath"] as? String {
+               let contents = fileManager.contents(atPath: infoFilePath),
+               let plist = try? PropertyListSerialization.propertyList(from: contents, options: [], format: nil) as? [String: Any],
+               let workspacePath = plist["WorkspacePath"] as? String {
                 return URL(fileURLWithPath: workspacePath, isDirectory: true)
             }
         } while startingDir.path != "/"
