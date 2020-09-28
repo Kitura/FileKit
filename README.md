@@ -1,15 +1,15 @@
 <p align="center">
-    <a href="http://kitura.io/">
-        <img src="https://raw.githubusercontent.com/IBM-Swift/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
+    <a href="http://kitura.dev/">
+        <img src="https://raw.githubusercontent.com/Kitura/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
     </a>
 </p>
 
 <p align="center">
-    <a href="https://ibm-swift.github.io/FileKit/index.html">
+    <a href="https://kitura.github.io/FileKit/index.html">
     <img src="https://img.shields.io/badge/apidoc-FileKit-1FBCE4.svg?style=flat" alt="APIDoc">
     </a>
-    <a href="https://travis-ci.org/IBM-Swift/FileKit">
-    <img src="https://travis-ci.org/IBM-Swift/FileKit.svg?branch=master" alt="Build Status - Master">
+    <a href="https://travis-ci.org/Kitura/FileKit">
+    <img src="https://travis-ci.org/Kitura/FileKit.svg?branch=master" alt="Build Status - Master">
     </a>
     <img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
     <img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
@@ -30,10 +30,10 @@ The latest release of `FileKit` (0.x.x) runs on Swift 4.0 and newer, on both mac
 
 ### Add dependencies
 
-Add `FileKit` to the dependencies within your application's `Package.swift` file. Substitute `"x.x.x"` with the latest `FileKit` [release](https://github.com/IBM-Swift/FileKit/releases).
+Add `FileKit` to the dependencies within your application's `Package.swift` file. Substitute `"x.x.x"` with the latest `FileKit` [release](https://github.com/Kitura/FileKit/releases).
 
 ```swift
-.package(url: "https://github.com/IBM-Swift/FileKit.git", from: "x.x.x")
+.package(url: "https://github.com/Kitura/FileKit.git", from: "x.x.x")
 ```
 Add `FileKit` to your target's dependencies:
 
@@ -112,7 +112,7 @@ Note. As this is native Swift functionality you can use this without importing F
 
 ## API documentation
 
-For more information visit our [API reference](http://ibm-swift.github.io/FileKit/).
+For more information visit our [API reference](http://kitura.github.io/FileKit/).
 
 ## Community
 
@@ -120,4 +120,4 @@ We love to talk server-side Swift, and Kitura. Join our [Slack](http://swift-at-
 
 ## License
 
-This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/IBM-Swift/FileKit/blob/master/LICENSE).
+This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/Kitura/FileKit/blob/master/LICENSE).
