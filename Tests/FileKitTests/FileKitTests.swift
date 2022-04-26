@@ -17,7 +17,7 @@ class FileKitTests: XCTestCase {
 
         XCTAssertEqual(executableFolderURL.path, executableFolder)
         #if os(Linux)
-          XCTAssertEqual(executableFolderURL.pathComponents.suffix(4), ["FileKit", ".build", "x86_64-unknown-linux", "debug" ])
+          XCTAssertEqual(executableFolderURL.pathComponents.suffix(4), ["FileKit", ".build", "x86_64-unknown-linux-gnu", "debug" ])
           XCTAssertEqual(executableFolderURL.lastPathComponent, "debug")
           XCTAssertEqual(executableURL.pathComponents.suffix(2), ["debug", "FileKitPackageTests.xctest"])
         #else
