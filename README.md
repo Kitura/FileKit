@@ -24,7 +24,7 @@
 Resolves commonly used paths, including the project, executable and working directories.
 
 ## Version
-The latest release of `FileKit` (0.x.x) runs on Swift 4.0 and newer, on both macOS and Ubuntu Linux.
+The latest release of `FileKit` (0.x.x) runs on Swift 5.2 and newer, on both macOS and Ubuntu Linux.
 
 ## Usage
 
