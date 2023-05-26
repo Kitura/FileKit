@@ -45,7 +45,11 @@ public class FileKit {
             // Get URL to /debug manually
             let sourceFile = sourceFileURL.path
 
-            if let range = sourceFile.range(of: "/checkouts/") {
+            if let range = sourceFile.range(of: "/SourcePackages/checkouts/") {
+                // If Package.swift is opened in XCode source code is downloaded in
+                // /<deriveddata-path>/SourcePackages/checkouts.
+                return URL(fileURLWithPath: sourceFile[..<range.lowerBound] + "/Build/Products/Debug")
+            } else if let range = sourceFile.range(of: "/checkouts/") {
                 // In Swift 4.0 and newer, package source code is downloaded to /<build-path>/checkouts
                 return URL(fileURLWithPath: sourceFile[..<range.lowerBound] + "/debug")
             } else if let range = sourceFile.range(of: "/Packages/") {
@@ -183,9 +187,17 @@ private extension FileKit {
             startingDir.appendPathComponent("..")
             startingDir.standardize()
             let packageFilePath = startingDir.appendingPathComponent("Package.swift").path
+            let infoFilePath = startingDir.appendingPathComponent("info.plist").path
 
             if fileManager.fileExists(atPath: packageFilePath) {
                 return startingDir
+            }
+            if fileManager.fileExists(atPath: infoFilePath),
+               let contents = fileManager.contents(atPath: infoFilePath),
+               let plistRaw = try? PropertyListSerialization.propertyList(from: contents, options: [], format: nil),
+               let plist = plistRaw as? [String: Any],
+               let workspacePath = plist["WorkspacePath"] as? String {
+                return URL(fileURLWithPath: workspacePath, isDirectory: true)
             }
         } while startingDir.path != "/"
 
